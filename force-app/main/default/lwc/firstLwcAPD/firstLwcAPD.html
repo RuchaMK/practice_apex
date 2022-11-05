@@ -1,0 +1,32 @@
+<template>
+    <div class="slds-m-around_large">
+        <h1>Welcome to LWC !!</h1>
+    <lightning-input label="Company" required value={inputCompanyName} onchange={handlePreview}></lightning-input>
+    <lightning-button label="Save" onclick={handleSave} ></lightning-button>
+    <p>
+        {msg}
+    </p>
+    <p>
+        {inputCompanyName}
+    </p>
+    </div>
+    <div class="slds-grid slds-wrap">        
+            <template for:each={result} for:item="acc" >
+                <div class="slds-col slds-size_1-of-3" key={acc.Id}>
+                <lightning-card  variant="Narrow"    title={acc.Name} icon-name="standard:account" >
+                <span >                    
+                <p >
+                Industry : {acc.Industry} <br/>
+                Rating : {acc.Rating} <br/>
+                WebSite : {acc.WebSite} <br/>
+                Revenue($) : {acc.AnnualRevenue} <br/>
+                </p>
+                </span>
+                </lightning-card>
+                </div>  
+                </template>
+                    </div>
+                    <!--for(Account acc: result){
+                        acc.Id;
+                    }-->
+</template>

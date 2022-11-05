@@ -1,0 +1,14 @@
+<template>
+
+    <h3>Output</h3>
+
+    <div class="slds-box slds-m-around_large">     
+    <c-child-component child-message = {parentMessage} onbtnclick = {handleEvent}></c-child-component>
+    </div>
+  
+    <div>
+        <lightning-button class="slds-m-right_medium" label="ChangeValue"  onclick={handleClick}></lightning-button>   
+        <lightning-button  class="slds-m-left_medium" label="CallChild" onclick={childCall}></lightning-button>
+    </div>
+
+</template>

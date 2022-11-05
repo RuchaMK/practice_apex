@@ -1,0 +1,13 @@
+firstLwcAPD
+1. handlePreview  - input, saving value, displayig dynamically
+2. handleSave - getContacts - Imperative func randomly query contacts 
+3. getAccounts - Wire used
+
+Spoonacular source: https://www.youtube.com/watch?v=2myol9hI28c&t=1336s
+To create columns with fixed widths, use the size attribute on lightning-layout-item.
+LWC
+dish
+dishMenu
+
+
+

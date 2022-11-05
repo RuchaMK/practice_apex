@@ -1,0 +1,29 @@
+<template>
+    <div class="slds-m-around_small">
+   <!-- <lightning-record-form
+        object-api-name="Account"
+        layout-type="Compact"
+        columns="2"
+        mode="edit"
+        onrror={handleError}
+        onsuccess={handleSuccess}
+        onsubmit={handleSubmit}>
+        </lightning-record-form>  
+    <lightning-button label="Submit" onclick={createContactRec}></lightning-button> --> 
+        <lightning-button label="Create Account" value = "Navigate" onclick={createAccountRec}></lightning-button>
+        <!-- <lightning-button label="Create Contact" value = "Navigate" onclick={createContactRec}></lightning-button> -->
+        
+        <lightning-record-edit-form object-api-name="Contact"
+        onsuccess={handleSuccess}>
+
+        <lightning-input label="First Name" field-name="FirstName"></lightning-input>
+        <lightning-input label="Last Name" field-name="LastName"></lightning-input>
+        <lightning-input label="Email" field-name="Email"></lightning-input>
+        <lightning-input label="Phone" field-name="Phone"></lightning-input>
+        <lightning-input label="Title" field-name="Title"></lightning-input>
+        <lightning-button class="slds-m-top_small"  label="Create new" ></lightning-button>
+        </lightning-record-edit-form>
+          
+        
+    </div>
+</template>
