@@ -35,7 +35,7 @@ Salesforce Practice Questions
 27.	__StringArrayTest__
 28.	__enumDataType____
 
-#LWC 
+# LWC 
 1. __childComponent__
 2. __dish__
 3. __dishMenu__
@@ -43,7 +43,7 @@ Salesforce Practice Questions
 5. __lds__
 6. __parentComponent__
 
-#Triggers
+# Triggers
 1.	__AccountTrigger__
 2.	__AccountUpdateTrigger__
 3.	__AccountAfterUpdate__
