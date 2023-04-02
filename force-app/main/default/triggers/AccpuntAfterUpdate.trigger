@@ -1,3 +1,3 @@
-trigger AccpuntAfterUpdate on Account (before insert) {
+trigger AccountAfterUpdate on Account (before insert) {
 
 }
