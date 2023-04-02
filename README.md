@@ -1,18 +1,56 @@
-# Salesforce DX Project: Next Steps
+Salesforce Practice Questions
+#Aura
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+# Apex
+1. __ParentChildApp__
+2. __firstAuraAPD__
 
-## How Do You Plan to Deploy Your Changes?
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+1.	__AccountBatch, AccountBatchTest__
+2.	__AccountDML__
+3.	__AccountHandler__
+4.	__AccountManager__
+5.	__AccountProcessor, AccountProcessorTest__
+6.	__AddPrimaryContact, AddPrimaryContactTest__
+7.	__ApexData__
+8.	__ApexLwcBasic__
+9.	__BasicFutureMethod__
+10.	__BasicQueueableMethod__
+11.	__CaseManager__
+12.	__CasePriorityBatch__
+13.	__ContactAndLeadSearch__
+14.	__ContactInfoUpdate__
+15.	__ContactListDatabase__
+16.	__ContactListDml__
+17.	__ContactSearch__
+18.	__ContactTriggerHandler__
+19.	__CountryCodeHelper__
+20.	__DailyLeadProcessor, DailyLeadProcessorTest__
+21.	__EmailManager__
+22.	__EnumExamples__
+23.	__Extra__
+24.	__LeadProcessor, LeadProcessorTest__
+25.	__OlderAccountsUtility__
+26.	__SpoonacularResponse__
+27.	__StringArrayTest__
+28.	__enumDataType____
 
-## Configure Your Salesforce DX Project
+#LWC 
+1. __childComponent__
+2. __dish__
+3. __dishMenu__
+4. __rstLwcAPD__
+5. __lds__
+6. __parentComponent__
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-## Read All About It
-
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+#Triggers
+1.	__AccountTrigger__
+2.	__AccountUpdateTrigger__
+3.	__AccountAfterUpdate__
+4.	__CaseTrigger__
+5.	__CaseTrigger_1__
+6.	__ClosedWon__
+7.	__ContactTrigger__
+8.	__DuplicateAccount__
+9.	__LeadSourceTrigger__
+10.	__ProductCodeUpdate__
