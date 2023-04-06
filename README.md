@@ -56,7 +56,7 @@ Salesforce Practice Questions
 
 2.	__AccountUpdateTrigger__
 3.	__AccountAfterUpdate__
-4.	__CaseTrigger__\
+4.	__CaseTrigger__
 	1. Whenever a case is created with origin as ‘Phone’ then 
 	set status as ‘New’ and Priority as ‘High’.
 5.	__CaseTrigger_1__
