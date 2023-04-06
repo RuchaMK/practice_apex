@@ -62,6 +62,8 @@ Salesforce Practice Questions
 5.	__CaseTrigger_1__
 6.	__ClosedWon__
 7.	__ContactTrigger__
-8.	__DuplicateAccount__
+8.	__DuplicateAccount__\
+	The Trigger will fire when we try to create the account with the same name
+ 	i.e. Preventing the users to create Duplicate Accounts
 9.	__LeadSourceTrigger__
 10.	__ProductCodeUpdate__
