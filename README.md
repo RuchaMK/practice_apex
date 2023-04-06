@@ -65,5 +65,7 @@ Salesforce Practice Questions
 8.	__DuplicateAccount__\
 	The Trigger will fire when we try to create the account with the same name
  	i.e. Preventing the users to create Duplicate Accounts
-9.	__LeadSourceTrigger__
-10.	__ProductCodeUpdate__
+9.	__LeadSourceTrigger__\
+	While inserting Lead if LeadSource = 'Web' then make rating = Cold.
+10.	__ProductCodeUpdate__\
+	Add 'PRC' brefore inserting a product record
