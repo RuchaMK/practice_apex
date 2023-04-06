@@ -45,15 +45,15 @@ Salesforce Practice Questions
 
 # Triggers
 1.	__AccountTrigger__\
-      /*Whenever New Account Record is created then create associated Contact Record automatically.
+      Whenever New Account Record is created then create associated Contact Record automatically.
         •account name as contact lastname
         •account phone as contact phone
          Object: Account
          Type: AfterInsert
 
-      Creates the number of contacts which are equal to the number which we will enter in the Number of Locations field on the Account Object.
+      Create the number of contacts which are equal to the number which we will enter in the Number of Locations field on the Account Object.
 	    Create Custom field called “Number of Locations” on the Account Object (Data Type = Number)
-*/
+
 2.	__AccountUpdateTrigger__
 3.	__AccountAfterUpdate__
 4.	__CaseTrigger__
