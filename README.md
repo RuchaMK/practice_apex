@@ -44,7 +44,7 @@ Salesforce Practice Questions
 6. __parentComponent__
 
 # Triggers
-1.	__AccountTrigger__
+1.	__AccountTrigger__\
       /*Whenever New Account Record is created then needs to create associated Contact Record automatically.
         •account name as contact lastname
         •account phone as contact phone
