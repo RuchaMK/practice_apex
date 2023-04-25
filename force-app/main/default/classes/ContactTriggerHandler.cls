@@ -1,6 +1,35 @@
 public class ContactTriggerHandler {
-    
+   
+   	public static void CountContact(List<Contact> newCon, List<Contact> oldCon){
+        try{
+        Set<Id> accList = new Set<Id>();
+        if(newCon != null){
+            for(Contact con: newCon)
+            accList.add(con.AccountId); //add Account Id in List
+        }
+        if(oldCon != null){
+            for(Contact con: oldCon)
+            accList.add(con.AccountId); //add Account Id in List
+        }
+        system.debug('Account on Contacts Size'+accList.Size());
+        List<Account> accConList = [Select Id,ContactCount__c,(Select id from Contacts) From Account where Id in :accList];
+        system.debug('Account to be checked Size'+accConList.Size());
+
+        if(accConList != null){
+        for(Account acc: accConList){
+            acc.ContactCount__c = acc.Contacts.size();
+        	}
+        }
+        
+        if(!accConList.isEmpty()){
+            update accConList;
+        }
+        }catch(Exception e){
+            system.debug(e.getStackTraceString() + e.getLineNumber() + e.getMessage());
+        }
+    }
     public static void preventDuplicateContacts(List<Contact> conList, Map<Id,Contact> oldconMap){
+         if(true) return;
         if(System.Label.stopTrigger =='stop'){} 
          List<String> newEmails = new  List<String>();
             List<String> existingEmails = new  List<String>();

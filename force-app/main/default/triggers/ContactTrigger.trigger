@@ -11,7 +11,14 @@ Here take email to check duplicates.
 Prob 2:
 Prevent deuplicate contacts on same account
 */
-        trigger ContactTrigger on Contact (before insert, before update,after undelete) {
+        trigger ContactTrigger on Contact (before insert, after insert, before update, after update, before delete, after delete, after undelete) {
+        	//Counts number of contacts on Account using trigger
+		if(true) return;    		
+			if(Trigger.isAfter && (Trigger.isInsert || Trigger.isUpdate || Trigger.isDelete || Trigger.isUndelete)){
+   				     ContactTriggerHandler.CountContact(Trigger.new, Trigger.old);
+    			}    
+
+		if(true) return;
             if(Trigger.isBefore && (Trigger.isUpdate || Trigger.isInsert)){
                 	ContactTriggerHandler.preventDuplicateContacts(Trigger.New, Trigger.oldMap); //prob1
                     ContactTriggerHandler.preventDuplicateConOnAcc(Trigger.New);//prob2
