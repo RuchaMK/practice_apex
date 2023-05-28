@@ -68,26 +68,20 @@ Salesforce Practice Questions
 9.	__LeadSourceTrigger__\
 	While inserting Lead if LeadSource = 'Web' then make rating = Cold.
 10.	__ProductCodeUpdate__\
-	Add 'PRC' brefore inserting a product record
+	Add 'PRC' brefore inserting a product record.
 11. 	__TriggerScenario_1__\
-	Roll Up Summary - Count number of contacts on Account using trigger 
-
+	Roll Up Summary - Count number of contacts on Account using trigger .
 12. 	__TriggerScenario_2__\
-	Whenever phone is modified on account object then update contact record with phone field
-
+	Whenever phone is modified on account object then update contact record with phone field.
 13. 	__TriggerScenario_3__\
 	Prevent Account from deleting if it has 2 or more contacts.
-
 14.	__TriggerScenario_4__\
 	Unrelated Objects - While creating or updating Lead check whether Email is already there in existing contact, 
 	if it is there then throw an error.
-
 15. 	__TriggerScenario_5__\
-	Whenever Lead is created with lead Source as WEB then give rating as COLD otherwise HOT 
-
+	Whenever Lead is created with lead Source as WEB then give rating as COLD otherwise HOT .
 16. 	__TriggerScenario_6__\
 	Update Parent Whenever a contacts description is updated then its parent account's description should get updated by related contact desc.
-
 17.	__TriggerScenario_7__\
 	Conditional Creation of Child
 	Trigger to create a related Contact on Account with same Phone as Account if 
