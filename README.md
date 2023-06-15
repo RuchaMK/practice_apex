@@ -84,10 +84,15 @@ Salesforce Practice Questions
 	Update Parent Whenever a contacts description is updated then its parent account's description should get updated by related contact desc.
 17. __TriggerScenario_7__\
 	Conditional Creation of Child
-	Trigger to create a related Contact on Account with same Phone as Account if 
-	custom field checkbox is checked on Account
+	Trigger to create a related Contact on Account with same Phone as Account if custom field checkbox is checked on Account
 18. __TriggerScenario_8__\
-	You have a custom object called "Invoice__c" with a master-detail relationship to the standard object "Account".
-	You want to update the "Account" custom field Last Invoice Date  whenever a related "Invoice__c" record is created or updated.
+	You have a custom object called "CustomInvoice__c" with a master-detail relationship to the standard object "Account".
+	You want to update the "Account" custom field Last Invoice DateTime with Date  whenever a related "CustomInvoice__c" record is created or updated.
 19.  __TriggerScenario_9__\
-	Roll Up Summary - Find sum of all related Opportunities Amount of an Account
+	Roll Up Summary - Find sum of all related Opportunities Amount and update on related Account. Create a field Opportunity amount on Account object and write a trigger on Opportunity to populate the total sum of all opportunity Amount on Account Object Opportunity amount field
+20.  __TriggerScenario_10__\
+	You have a custom object called "Opportunity__c" with a field named "Stage__c". Whenever an Opportunity record is updated to change the Stage to "Closed Won", you need to create a new "Revenue__c" record with the same amount as the Opportunity's "Amount__c" field.
+21.  __TriggerScenario_11__\
+	Develop an Apex trigger that sets the Account owner as the default opportunity owner for newly created Opportunities.
+22.  __TriggerScenario_12__\
+	Implement an Apex trigger to enforce field-level security on a custom field based on the User’s profile.
