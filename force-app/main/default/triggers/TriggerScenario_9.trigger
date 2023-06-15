@@ -9,7 +9,7 @@ trigger TriggerScenario_9 on Opportunity ( after insert, after update, after del
             
         }
     }
-    if(Trigger.isDelete){
+    else{
         for(Opportunity op: Trigger.old){
               updatedOpportunity.put(op.AccountId,op);
         } 
@@ -20,15 +20,9 @@ trigger TriggerScenario_9 on Opportunity ( after insert, after update, after del
                Double totalAmount = 0;
                 for(Opportunity op: acc.Opportunities){
                     if(op.Amount!=null){
-                        
-                             system.debug('##only insert');
-                            totalAmount += op.Amount;
-                        
-                                       		
-                       
-                           
-                            system.debug('&&'+totalAmount);
-                        
+                           system.debug('##only insert');
+                           totalAmount += op.Amount;
+		                   //system.debug('&&'+totalAmount);
                     }
                 }
                 acc.TotalOpportunity__c = totalAmount;
@@ -38,6 +32,21 @@ trigger TriggerScenario_9 on Opportunity ( after insert, after update, after del
         if(finalUpdate.size()>0){
             update finalUpdate;
         }
+/*
+    for (AggregateResult ar : [
+       SELECT AccountId, SUM(Amount) totalAmount
+       FROM Opportunity
+       WHERE AccountId IN :updatedOpportunity.keySet()
+       AND Amount != null
+       GROUP BY AccountId
+    ]) {
+       Account acc = new Account(
+          Id = (Id) ar.get('AccountId'),
+          TotalOpportunity__c = (Decimal) ar.get('totalAmount')
+       );
+       finalUpdate.add(acc);
+    }
 
+*/
     
 }
