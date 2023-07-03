@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-       <types>
-        <members>TriggerScenario_6</members>
-        <members>TriggerScenario_7</members>
-        <members>TriggerScenario_8</members>
-        <members>TriggerScenario_9</members>
-        <members>TriggerScenario_10</members>
+       <!--<types>
+        <members>TriggerScenario_11</members>
         <name>ApexTrigger</name>
+       </types>-->
+       <types>
+            <members>AccountBatch</members>
+            <members>AccountBatchTest</members>
+            <members>AccountCallout</members>
+            <members>AccountDML</members>
+            <members>AccountHandler</members>
+            <members>AccountManager</members>
+            <members>AccountOppoTrigger</members>
+            <members>AccountProcessor</members>
+            <members>AccountProcessorTest</members>
+            <members>AccountReponseHandler</members>
+            <members>AccountReponseHandler_Test</members>
+            <members>AddPrimaryContact</members>
+            <members>AddPrimaryContactTest</members>
+            <members>ApexData</members>
+            <members>ApexLwcBasic</members>
+            <members>BasicFutureMethod</members>
+            <members>BasicQueueableMethod</members>
+            <members>CaseManager</members>
+            <members>CasePriorityBatch</members>
+            <members>ContactAndLeadSearch</members>
+            <members>ContactHandler</members>
+            <members>ContactInfoUpdate</members>
+            <members>ContactListDatabase</members>
+            <members>ContactListDml</members>
+            <members>ContactSearch</members>
+        <name>ApexClass</name>
        </types>
     <version>57.0</version>
 </Package>

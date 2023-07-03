@@ -1,0 +1,9 @@
+@IsTest
+public class AccountReponseHandler_Test {
+	
+	static testMethod void testParse() {
+		String json = '[{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mkWwiAAE\"},\"Id\":\"0015i00000mkWwiAAE\",\"Name\":\"Blackbeards Coconut Milk Emporium\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mnWtOAAU\"},\"Id\":\"0015i00000mnWtOAAU\",\"Name\":\"ACCCCC2\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mnWtPAAU\"},\"Id\":\"0015i00000mnWtPAAU\",\"Name\":\"ACCCCCC3\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mnWtJAAU\"},\"Id\":\"0015i00000mnWtJAAU\",\"Name\":\"ACCCC1\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mkWquAAE\"},\"Id\":\"0015i00000mkWquAAE\",\"Name\":\"Pirate Pete\'s Parrot Pellets\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000od09BAAQ\"},\"Id\":\"0015i00000od09BAAQ\",\"Name\":\"API1\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000od08XAAQ\"},\"Id\":\"0015i00000od08XAAQ\",\"Name\":\"API ACCOUNT\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mkWqkAAE\"},\"Id\":\"0015i00000mkWqkAAE\",\"Name\":\"Captain Bly’s Finest Treasure Chests\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000mkQ9ZAAU\"},\"Id\":\"0015i00000mkQ9ZAAU\",\"Name\":\"Postman\"},{\"attributes\":{\"type\":\"Account\",\"url\":\"/services/data/v58.0/sobjects/Account/0015i00000nANI7AAO\"},\"Id\":\"0015i00000nANI7AAO\",\"Name\":\"Edge Communications\",\"Rating\":\"Hot\"}]';
+		List<AccountReponseHandler> obj = AccountReponseHandler.parse(json);
+		System.assert(obj != null);
+	}
+}

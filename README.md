@@ -72,7 +72,7 @@ Salesforce Practice Questions
 11. __TriggerScenario_1__
 	Roll Up Summary - Count number of contacts on Account using trigger .
 12. __TriggerScenario_2__\
-	Whenever phone is modified on account object then update contact record with phone field.
+	P-C: Whenever phone is modified on account object then update contact record with phone field.
 13. __TriggerScenario_3__\
 	Prevent Account from deleting if it has 2 or more contacts.
 14. __TriggerScenario_4__\
@@ -81,7 +81,7 @@ Salesforce Practice Questions
 15.    __TriggerScenario_5__\
 	Whenever Lead is created with lead Source as WEB then give rating as COLD otherwise HOT .
 16. __TriggerScenario_6__\
-	Update Parent Whenever a contacts description is updated then its parent account's description should get updated by related contact desc.
+	C-P: Update Parent Whenever a contacts description is updated then its parent account's description should get updated by related contact desc.
 17. __TriggerScenario_7__\
 	Conditional Creation of Child
 	Trigger to create a related Contact on Account with same Phone as Account if custom field checkbox is checked on Account
@@ -89,7 +89,7 @@ Salesforce Practice Questions
 	You have a custom object called "CustomInvoice__c" with a master-detail relationship to the standard object "Account".
 	You want to update the "Account" custom field Last Invoice DateTime with Date  whenever a related "CustomInvoice__c" record is created or updated.
 19.  __TriggerScenario_9__\
-	Roll Up Summary - Find sum of all related Opportunities Amount and update on related Account. Create a field Opportunity amount on Account object and write a trigger on Opportunity to populate the total sum of all opportunity Amount on Account Object Opportunity amount field
+	C-P: Roll Up Summary - Find sum of all related Opportunities Amount and update on related Account. Create a field Opportunity amount on Account object and write a trigger on Opportunity to populate the total sum of all opportunity Amount on Account Object Opportunity amount field
 20.  __TriggerScenario_10__\
 	You have a custom object called "Opportunity__c" with a field named "Stage__c". Whenever an Opportunity record is updated to change the Stage to "Closed Won", you need to create a new "Revenue__c" record with the same amount as the Opportunity's "Amount__c" field.
 21.  __TriggerScenario_11__\
