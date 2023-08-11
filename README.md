@@ -55,13 +55,30 @@ Salesforce Practice Questions
 	    Create Custom field called “Number of Locations” on the Account Object (Data Type = Number)
 
 2.	__AccountUpdateTrigger__
+	Add Account Phone no to related contact Phone no
 3.	__AccountAfterUpdate__
 4.	__CaseTrigger__
 	1. Whenever a case is created with origin as ‘Phone’ then 
 	set status as ‘New’ and Priority as ‘High’.
 5.	__CaseTrigger_1__
+    1. When ever a case is created with origin as Email then set status as new and Priority as Medium.
+ 		Object: Case
+ 		Type: Before Insert -- Trigger.New
 6.	__ClosedWon__
-7.	__ContactTrigger__
+7.	__ContactTrigger, ContactTriggerHandler__ 
+	  /*Prob 1:
+		* Prevent Duplicates on Contact 
+		1.No duplicate 
+		2.Duplicates allowed but not within same account
+		use  row locking (FOR UPDATE)
+		This can be made using workflow but it fails for undelete case or if unrelated field is updated.
+		Solution:
+		1. Make a list using trigger.new - newContactEmails.
+		2. Query ExistingContactList by checking existingContactEmails in database.
+		Here take email to check duplicates.
+		Prob 2:
+		Prevent duplicate contacts on same account
+		*/
 8.	__DuplicateAccount__\
 	The Trigger will fire when we try to create the account with the same name
  	i.e. Preventing the users to create Duplicate Accounts
