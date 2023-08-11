@@ -113,3 +113,6 @@ Salesforce Practice Questions
 	Develop an Apex trigger that sets the Account owner as the default opportunity owner for newly created Opportunities.
 22.  __TriggerScenario_12__\
 	Implement an Apex trigger to enforce field-level security on a custom field based on the User’s profile.
+23.  __TriggerScenario_13__\
+	To Prevent The User From Creating Duplicate Contacts When A Contact Already Exists With The Same Email.
+	
