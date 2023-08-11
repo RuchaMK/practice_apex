@@ -2,27 +2,24 @@
 trigger TriggerScenario_13 on Contact (before insert, before update) {
 	List<String> newContactsEmail = new List<String>();
     List<Contact> allContactsList = new List<Contact>();
-    List<String> ExistingContactsEmail = new List<String>();
-    for(Contact con: Trigger.new){
-        newContactsEmail.add(con.email);
-    }
     
-    allContactsList = [Select id,Email from Contact where Email in: newContactsEmail];
-    for(Contact con: allContactsList){
-        ExistingContactsEmail.add(con.Email);
-    }
     for(Contact con: Trigger.new){
-        if(ExistingContactsEmail.size() > 0 && ExistingContactsEmail.contains(con.Email)){
-            if(Trigger.oldMap != null && Trigger.oldMap.get(con.Id).Email == con.Email){
-              continue;
-            }
-  				con.email.addError('Duplicate Contact Email');
+        if(Trigger.oldMap != null && Trigger.oldMap.get(con.Id).Email != con.Email){
+            newContactsEmail.add(con.email);
         }
     }
+
+    allContactsList = [Select id,Email from Contact where Email in: newContactsEmail and Email != null];
+  
+    for(Contact con: Trigger.new){
+        if(allContactsList.size() > 0){
+            con.email.addError('Duplicate Contact Email');
+        }
+    }
+        
 }
 
 /*
-String newContactsEmail: To save new emails being inserted from Trigger.new
+String newContactsEmail: To save new emails being inserted from Trigger.new - can have null email values
 Contact allContactsList: To get list of all contacts which exist in db with same Email 
-ExistingContactsEmail: consists emails from allContactsList
 */
