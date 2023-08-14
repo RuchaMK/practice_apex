@@ -1,5 +1,5 @@
 /*To Prevent The User From Creating Duplicate Contacts When A Contact Already Exists With The Same Email*/
-trigger TriggerScenario_13 on Contact (before insert, before update) {
+trigger TriggerScenario_13 on Contact (before insert, before update, after undelete) {
 	List<String> newContactsEmail = new List<String>();
     List<Contact> allContactsList = new List<Contact>();
     List<String> ExistingContactsEmail = new List<String>();
@@ -19,6 +19,9 @@ trigger TriggerScenario_13 on Contact (before insert, before update) {
             }
   		con.email.addError('Duplicate Contact Email');
         }
+        else{
+           ExistingContactsEmail.add(con.Email); //for bulk
+        }
     }
 }
 /*
@@ -32,5 +35,12 @@ Success-
 null email
 new email
 update but email not changed
+rec1 mail1 and delete, rec2 mail1 rec1 undelete 
 
+List<Contact> conList = new List<Contact>();
+for(Integer i =0 ; i<3;i++){
+    conList.add(new Contact(LastName='test',Email='Test1@t.com'));
+}
+conList.add(new Contact(LastName='test',Email='Test10@t.com'));
+insert conList;
 */
