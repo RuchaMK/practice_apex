@@ -27,13 +27,10 @@ trigger TriggerScenario_16 on User (before insert) {
                     us.ManagerId = managerMap.get(us.Team__c).Id;
                 }else{
                     us.addError('There is no user in Team '+ us.Team__c + 'to assign as Manager.');
-                }
-                }
-                
+                    }
+                }                 
             }
-                }
-         
-        
+        }           
     }
 }
 
