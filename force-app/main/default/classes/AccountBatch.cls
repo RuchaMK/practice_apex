@@ -22,5 +22,7 @@ public class AccountBatch implements Database.Batchable<sObject>{
     }
 }
 
-/*AccountBatch ab = new AccountBatch();
+/*
+Command
+AccountBatch ab = new AccountBatch();
 Database.executeBatch(ab);*/
