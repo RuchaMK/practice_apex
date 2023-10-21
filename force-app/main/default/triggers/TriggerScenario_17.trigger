@@ -1,3 +1,5 @@
+/* Prevent Multiple Primary Contact on Parent Account
+One Primary Contact per Account*/
 trigger TriggerScenario_17 on Contact (before insert, after undelete,before update) {
     Set<Id> accountIdsWithPrimaryContact = new Set<Id>();
      Map<Id, Contact> accountIdToPrimaryContactMap = new Map<Id, Contact>();

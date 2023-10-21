@@ -115,12 +115,20 @@ Salesforce Practice Questions
 	Implement an Apex trigger to enforce field-level security on a custom field based on the User’s profile.
 23.  __TriggerScenario_13__\
 	To Prevent The User From Creating Duplicate Contacts When A Contact Already Exists With The Same Email.
+	Prevent Duplicate contacts based on Email
 23.  __TriggerScenario_14__\
 	Prevent Duplicate Contact with same Last Name and on same Account
+	Prevent Duplicate contacts based on Email
 23.  __TriggerScenario_15__\
 	Roll Up Summary - Count number of contacts on Account using trigger
 23.  __TriggerScenario_16__\
 	When the checkbox (Assign Manager) is checked automatically assign
 	a manager to user based on their team. 
 	(you can throw error on no user in team)
+24. __TriggerScenario_17__\
+	Prevent Multiple Primary Contact on Parent Account one Primary Contact per Account
+25. __TriggerScenario_18__\
+	Prevent Duplicates on Contact based on Phone number and LastName
+26. __TriggerScenario_19__\
+	Create 2 contacts if Account is inserted and 3 contacts if Account is updated.
 	
