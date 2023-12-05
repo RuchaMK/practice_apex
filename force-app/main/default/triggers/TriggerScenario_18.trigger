@@ -1,4 +1,5 @@
 /*Prevent Duplicates on Contact based on Phone number and LastName*/
+//==================v2====================
 trigger TriggerScenario_18 on Contact (before insert,before update) {
     //fields to check
     Map<String,Contact> phoneContactMap = new Map<String,Contact>();
@@ -54,3 +55,35 @@ trigger TriggerScenario_18 on Contact (before insert,before update) {
   
   insert conList;
   */
+
+/*//==================v1==================
+trigger myTrig_16 on Contact(before insert,before update){
+	Map<String,Contact> conList = new Map<String,Contact>();
+	Set<String> phoneSetFetch = new Set<String>();
+	List<Contact> existingConList = new List<Contact>();
+	
+	for(Contact con : Trigger.new){
+		if(conList.contains(con.Phone) && conList.contains(con.LastName)){
+			con.addError('Bulk Operation same phone number and LastName detected');
+		}else{
+			conList.put(con.LastName,con);
+			phoneSetFetch.add(con.Phone);
+		}
+	}
+	
+	if(!phoneSetFetch.isEmpty){
+		existingConList = [Select Id from Contact where con.LastName != null and con.Phone != null
+						   and con.LastName in : conList.keySet() and con.Phone in : phoneSetFetch];
+	}
+	
+	if(!existingConList.isEmpty){
+		for(Contact con : existingConList){
+			if(conList.containsKey(con.LastName) && conList.get(con.LastName).Phone.equals(con.Phone)){
+				conList.get(con.LastName).addError('Duplicate Phone number and Last name');
+			}
+		}
+	}
+}
+
+
+*/

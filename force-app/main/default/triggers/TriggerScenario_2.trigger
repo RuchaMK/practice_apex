@@ -22,6 +22,11 @@ trigger TriggerScenario_2 on Account (after update){
 }
 }
 /*
+Make a "map" of the obj "which is modified"
+"Query" the object "that needs to be modified"
+Map<changedObject>
+[toChange]
+
 1. Loop over new list
 2. Make a map of what is updated - updatedIdList
 3. Loop over what needs to be updated

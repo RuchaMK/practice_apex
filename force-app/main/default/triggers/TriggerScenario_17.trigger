@@ -1,5 +1,32 @@
 /* Prevent Multiple Primary Contact on Parent Account
 One Primary Contact per Account*/
+/*Prevent Multiple Primary Contact on Parent Account
+One Primary Contact per Account*/
+trigger checkTrigger on Contact(before insert, before update, after undelete){
+	//if(true) return;
+    Map<Id,Contact> accConMap = new Map<Id,Contact>();
+	List<Contact> existingConList = new List<Contact>();
+	
+	for(Contact con : Trigger.new){
+         if(con.Primary_Contact__c == true){
+		accConMap.put(con.AccountId,con);
+             }
+	}
+	
+	if(!accConMap.isEmpty()){
+		existingConList = [Select Id, AccountId  FROM Contact WHERE  AccountId in : accConMap.keySet() and AccountId != null and Primary_Contact__c = true];
+	}
+	system.debug('$$'+existingConList+'%%'+accConMap);
+	if(!existingConList.isEmpty()){
+            for(Contact con : existingConList){
+                if(accConMap.containsKey(con.AccountId)){
+                     accConMap.get(con.AccountId).AccountId.addError('Primary Contact already present: ' + con.Id);
+                }                              
+            }        
+	}
+}
+
+/*================================================================v2=================================================================
 trigger TriggerScenario_17 on Contact (before insert, after undelete,before update) {
     Set<Id> accountIdsWithPrimaryContact = new Set<Id>();
      Map<Id, Contact> accountIdToPrimaryContactMap = new Map<Id, Contact>();
@@ -29,7 +56,7 @@ trigger TriggerScenario_17 on Contact (before insert, after undelete,before upda
          }
      }
  } 
-
+*/
 //===========================================V1===============================================
 /*Enforce single primary contact on Account, uncheck the checkbox for multiple contact
 **Checkbox Field on Contact : Primary_Contact__c, only 1 contact on same Account should have primary contact checked*/

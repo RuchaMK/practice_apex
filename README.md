@@ -118,7 +118,6 @@ Salesforce Practice Questions
 	Prevent Duplicate contacts based on Email
 23.  __TriggerScenario_14__\
 	Prevent Duplicate Contact with same Last Name and on same Account
-	Prevent Duplicate contacts based on Email
 23.  __TriggerScenario_15__\
 	Roll Up Summary - Count number of contacts on Account using trigger
 23.  __TriggerScenario_16__\
