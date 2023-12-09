@@ -1,5 +1,7 @@
 /*Trigger to count OpportunityLineItem(Grandchild) whose ListPrice is greater than 50,000$ 
-associated with Opportunity(Parent) and display that count on Account's(GrandParent) custom field.*/
+associated with Opportunity(Parent) and display that count on Account's(GrandParent) custom field.
+ Account's(GrandParent)-> Opportunity(Parent) -> OpportunityLineItem(Grandchild)
+*/
 trigger TriggerScenario_22 on OpportunityLineItem (after insert, after delete) {
     Set<Id> oppIds  = new Set<Id>();
     List<Opportunity> opList = new List<Opportunity>();
@@ -10,17 +12,17 @@ trigger TriggerScenario_22 on OpportunityLineItem (after insert, after delete) {
     
     if(Trigger.isInsert){
         for(OpportunityLineItem opLI : Trigger.new){
-            oppIds.add(opLI.OpportunityId);
+            oppIds.add(opLI.OpportunityId);//parentId
         }
     }
     
     if(Trigger.isDelete){
         for(OpportunityLineItem opLI : Trigger.old){
-            oppIds.add(opLI.OpportunityId);
+            oppIds.add(opLI.OpportunityId);//parentId
         }
     }
        
-    if(!oppIds.isEmpty()){
+    if(!oppIds.isEmpty()){//query Parent
         opList = [Select Id, AccountId from Opportunity where Id in : oppIds];      
     }
     
@@ -37,7 +39,7 @@ trigger TriggerScenario_22 on OpportunityLineItem (after insert, after delete) {
     for(AggregateResult aggr : aggrList){
         accId = (Id)aggr.get('AccountId');//sf automatically assigns
         oliCount = (Decimal)aggr.get('oliCount');
-        countMap.put(accId,oliCount);       
+        countMap.put(accId,oliCount);//parent,count       
     }
     
     for(Id id : countMap.keySet()){
@@ -47,5 +49,6 @@ trigger TriggerScenario_22 on OpportunityLineItem (after insert, after delete) {
     
     if(!toUpdateAcc.isEmpty()){
         update toUpdateAcc;
-    }       
+    }
+       
 }

@@ -38,3 +38,5 @@ trigger TriggerScenario_20 on Case (after insert,after update) {
     }
 
 }
+
+
