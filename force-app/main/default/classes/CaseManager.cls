@@ -1,62 +1,81 @@
-@RestResource(urlMapping='/Cases/*')
+//rest resource, global, global static, @
+@RestResource(urlMapping = '/Cases/*')
 global with sharing class CaseManager {
-    @HttpGet
-    global static List<Case> getCases() {
-       // RestRequest request = RestContext.request;
-        // grab the caseId from the end of the URL
-       // String caseId = request.requestURI.substring(request.requestURI.lastIndexOf('/')+1);
-        List<Case> result =  [SELECT CaseNumber,Subject,Status,Origin,Priority
-                        FROM Case LIMIT 10];
+	@HttpGet 
+    global static Case getCaseById(){
+        RestRequest req = RestContext.request;
+        //extract case id from request url
+        //requestURI - 
+        //lastindexof - returns last occurence indexof string
+        //subString - returns a new string from given index
+        String caseId = req.requestURI.subString(req.requestURI.lastIndexOf('/') + 1);
+        Case result = [Select CaseNumber, Subject, Status, Origin, Priority
+                       FROM Case
+                       WHERE Id =: caseId];
+        
         return result;
     }
+    
     @HttpPost
-    global static ID createCase(String subject, String status,
-        String origin, String priority) {
-        Case thisCase = new Case(
-            Subject=subject,
-            Status=status,
-            Origin=origin,
-            Priority=priority);
-        insert thisCase;
-        return thisCase.Id;
-    }   
-    @HttpDelete
-    global static void deleteCase() {
-        RestRequest request = RestContext.request;
-        String caseId = request.requestURI.substring(
-            request.requestURI.lastIndexOf('/')+1);
-        Case thisCase = [SELECT Id FROM Case WHERE Id = :caseId];
-        delete thisCase;
-    }     
-    @HttpPut
-    global static ID upsertCase(String subject, String status,
-        String origin, String priority, String id) {
-        Case thisCase = new Case(
-                Id=id,
-                Subject=subject,
-                Status=status,
-                Origin=origin,
-                Priority=priority);
-        // Match case by Id, if present.
-        // Otherwise, create new case.
-        upsert thisCase;
-        // Return the case ID.
-        return thisCase.Id;
+    global static Id createCase(String subject, string status, String origin, String priority){
+        Case newCase = new Case(Subject = subject, Status = status, Origin = origin, Priority = priority);
+        insert newCase;
+        return newCase.Id;
     }
+    
+    @HttpPut
+    global static Id upsertCase(String subject, string status, String origin, String priority, String Id){
+        Case newCase = new Case(Id = Id,Subject = subject, Status = status, Origin = origin, Priority = priority);
+        upsert newCase;
+        return newCase.Id;
+    }
+    
     @HttpPatch
-    global static ID updateCaseFields() {
-        RestRequest request = RestContext.request;
-        String caseId = request.requestURI.substring(
-            request.requestURI.lastIndexOf('/')+1);
-        Case thisCase = [SELECT Id FROM Case WHERE Id = :caseId];
-        // Deserialize the JSON string into name-value pairs
-        Map<String, Object> params = (Map<String, Object>)JSON.deserializeUntyped(request.requestbody.tostring());
-        // Iterate through each parameter field and value
-        for(String fieldName : params.keySet()) {
-            // Set the field and value on the Case sObject
-            thisCase.put(fieldName, params.get(fieldName));
+    global static Id updateCaseFields(){
+        RestRequest req = RestContext.request;
+        system.debug('Substring '+req.requestURI.lastIndexOf('/') + ' ' + req.requestURI.subString(req.requestURI.lastIndexOf('/')+1));
+        String caseId = req.requestURI.subString(req.requestURI.lastIndexOf('/')+1);
+        Case thisCase = [Select Id from Case where Id =: caseId];
+        Map<String,Object> params = (Map<String,Object>)JSON.deserializeUntyped(req.requestbody.toString());
+        for(String fieldName : params.keySet()){
+            thisCase.put(fieldName,params.get(fieldName));//used to update the field directly
         }
         update thisCase;
         return thisCase.Id;
-    }    
+    }
+    
+    @HttpDelete
+    global static void deleteCase(){
+        RestRequest req = RestContext.request;
+        String caseId = req.requestURI.subString(req.requestURI.lastIndexOf('/')+1);
+        Case deleteCase = [Select Id from Case where Id =: caseId];
+        delete deleteCase;    
+    }
 }
+/*
+/services/apexrest/Cases
+POST
+URL.getSalesforceBaseUrl().toExternalForm()
+{
+  "subject" : "Bigfoot Sighting!",
+  "status" : "New",
+  "origin" : "Phone",
+  "priority" : "Low"
+}
+PUT
+/services/apexrest/Cases
+{
+  "Id": "5005i00000fKe4HAAS",
+  "status" : "Working",
+  "subject" : "Bigfsoot Sighting!",
+  "priority" : "Medium"
+}
+PATCH
+/services/apexrest/Cases/5005i00000fKe4HAAS
+{
+  "status" : "Escalated",
+  "priority" : "High"
+}
+GET
+/services/apexrest/Cases/5005i00000fKe4HAAS
+*/

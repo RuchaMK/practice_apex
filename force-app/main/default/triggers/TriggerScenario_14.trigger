@@ -1,38 +1,53 @@
 /*Prevent Duplicate Contact with same Last Name and on same Account*/
-trigger TriggerSceanrio_14 on Contact (before insert,before update) {
-	Set<Id> accIds = new Set<Id>();
-    Map<String,Contact> accIdConMap = new Map<String,Contact>();
-    system.debug('1'+Trigger.new);
-    for(Contact con : Trigger.new){
-        if(accIds.contains(con.AccountId) && accIdConMap.containsKey(con.LastName)){
-            con.addError('Duplicate AccountId and LastName');
+trigger TriggerScenario_14 on Contact(before insert, before update, after undelete){
+    //map con id and acc id 
+	//map existingconList
+	//iterate
+	Map<Id,String> toCompare =  new Map<Id,String>();
+	Map<String,contact> conList = new Map<String,contact>();
+    if(Trigger.new != null){
+        for(Contact con: Trigger.new){
+            toCompare.put(con.AccountId, con.LastName);
+            conList.put(con.LastName,con);
         }
-        accIds.add(con.AccountId);
-        accIdConMap.put(con.LastName,con);
     }
     
-    if(!accIds.isEmpty()){
-        List<Contact> existingContact = [Select AccountId,LastName from Contact 
-                                         where LastName!=null and AccountId!=null 
-                                         and AccountId in : accIds 
-                                         and LastName in : accIdConMap.keySet()];
-        if(!existingContact.isEmpty()){
-            for(Contact con: existingContact){
-                //system.debug('10'+accIdConMap.containsKey(con.LastName) + '11' + accIdConMap.get(con.LastName).AccountId == con.AccountId);
-                if(accIdConMap.containsKey(con.LastName) && accIdConMap.get(con.LastName).AccountId == con.AccountId){
-                    accIdConMap.get(con.LastName).LastName.addError('DUPLICATE ERR - Contact exists with same LastName:'+con.Id);
-                }
-            }
+	List<Contact> existingContact = [Select LastName, AccountId from Contact where AccountId in: toCompare.keyset()];
+        
+    for(Contact con: existingContact){
+	system.debug('To Compare: '+toCompare);
+system.debug('existingContact: '+existingContact);
+system.debug('2'+toCompare.containsKey(con.AccountId));
+system.debug('3'+toCompare.get(con.AccountId) + '=='+con.LastName);
+        if(toCompare.containsKey(con.AccountId) && toCompare.get(con.AccountId).equals(con.LastName)){
+            conList.get(con.AccountId).LastName.addError('Contact with this LastName already exists on Account: '+ con.AccountId);
         }
+        else{
+            toCompare.put(con.AccountId,con.LastName);//for bulk
+        }
+
     }
+    
 }
 /*
-Account acc = new Account(Name='2acsc');
-        List<Contact> conList = new List<Contact>();
-        for(Integer i=0; i<3;i++){
-            Contact con = new Contact(LastName = '2cfyfsofn', AccountId = acc.Id);
-            conList.add(con);
-        }
-        insert conList; 
+toCompare: storing values that need comparison
+existingContact: To find all records in existing db which have same comparable parameters
+conList: To show error on LastName field of contact
+Scenarios:
+Pass:
+Both Diff: 1 1
+Same LastName diff AccountId: 0 1
+Diff LastName same AccountId: 1 0
+
+Fail:
+Same Last Name and same Account Id: 0 0 
+
+List<Contact> conList = new List<Contact>();
+for(Integer i =0 ; i<3;i++){
+    conList.add(new Contact(LastName='test',Email='Test1@t.com',AccountId='0015j00000nA80KAAS'));
+}
+conList.add(new Contact(LastName='test',Email='Test10@t.com'));
+insert conList;
+
 
 */

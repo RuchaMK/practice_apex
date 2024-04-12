@@ -1,102 +1,24 @@
-//HttpGet based on Id
-@RestResource(urlMapping = '/Account/*')
+/*Create an Apex REST service that returns an account and its contacts.
+Create an Apex REST class that is accessible at /Accounts/<Account_ID>/contacts. The service will return the account's ID and name plus the ID and name of all contacts associated with the account. Write unit tests that achieve 100% code coverage for the class and run your Apex tests.
+Prework: Be sure the Remote Sites from the first unit are set up.
+Create an Apex class
+Name: AccountManager
+Class must have a method called getAccount
+Method must be annotated with @HttpGet and return an Account object
+Method must return the ID and Name for the requested record and all associated contacts with their ID and Name
+Create unit tests
+Unit tests must be in a separate Apex class called AccountManagerTest
+Unit tests must cover all lines of code included in the AccountManager class, resulting in 100% code coverage
+Run your test class at least once (via Run All tests the Developer Console) before attempting to verify this challenge*/
+@RestResource(urlMapping = '/Accounts/*/contacts')
 global class AccountManager {
     @HttpGet
-    global static Account getAccountById(){
-        RestRequest request = RestContext.request;
-        String accId = request.requestURI.subString(request.requestURI.lastIndexOf('/')+1);
-        Account acc = [Select Name,AccountNumber,Industry,AnnualRevenue from Account where Id=:accId];
+    global static Account getAccount(){
+        //requestURI=/Accounts/0015i00000nANI8AAO/contacts
+        RestRequest req = RestContext.request;
+        String accId = req.requestURI.substringBetween('/Accounts/','/contacts');
+        System.debug('**'+accId);
+        Account acc = [Select Id, Name, (Select Id, Name from Contacts) from Account where Id =: accId];
         return acc;
     }
-    
-    @HttpPost
-    global static Id createAccount(String name,String accnum,String industry,Double ar){
-        Account newAcc = new Account(Name = name,AccountNumber = accnum,Industry = industry,AnnualRevenue = ar);
-        insert newAcc;
-        return newAcc.Id;
-    }
-    
-    @HttpPut
-    global static Id upsertAccount(String Id,String name,String accnum,String industry,Double ar){
-        //if Id is passed in parameters upsert else insert
-        Account newAcc = new Account(Id = Id,Name = name,AccountNumber = accnum,Industry = industry,AnnualRevenue = ar);
-        upsert newAcc;
-        return newAcc.Id; 
-    }
-    
-     @HttpPatch
-    global static Id updateAccount(){
-        RestRequest request = RestContext.request;
-        String accId = request.requestURI.subString(request.requestURI.lastIndexOf('/')+1);
-        Account updAcc = [Select Id from Account where Id=:accId];
-        Map<String,Object> params = (Map<String,Object>)JSON.deserializeUntyped(request.requestBody.toString()); 
-        for(String fieldName: params.keySet()){
-            updAcc.put(fieldName,params.get(fieldName));
-        }
-        update updAcc;
-        return updAcc.Id;
-    }
-    
-    @HttpDelete
-    global static void deleteAccount(){
-        RestRequest request = RestContext.request;
-        String accId = request.requestURI.subString(request.requestURI.lastIndexOf('/')+1);
-        Account delAcc = [Select Id from Account where Id=:accId];
-        delete delAcc;
-    }
 }
-/*
-GET
-/services/apexrest/Account/0015j00000CwQ4fAAF
-
-Name: Burlington Textiles Corp of America
-AccountNumber: CD656092
-Industry: Apparel
-AnnualRevenue: 350000000
-Id: 0015j00000CwQ4fAAF
-
-POST
-/services/apexrest/Account/
-
-Request Body:
-{
-  "name": "New Account",
-  "accnum": "123532",
-  "industry": "My Industry",
-  "ar": 7126412.2242
-}
-
-PUT
-/services/apexrest/Account/
-
-{
-  "name": "Put Account",
-  "accnum": "123532",
-  "industry": "Put Industry",
-  "ar": 7126412.2242
-}
-
-/services/apexrest/Account/
-
-{
-  "Id": "0015j00000eQb5XAAS" ,
-  "name": "upsert Account",
-  "accnum": "0012372",
-  "industry": "upsert Industry",
-  "ar": 12.2242
-   
-}
-
-PATCH
-/services/apexrest/Account/0015j00000eQb5XAAS
-
-{
-  "name": "patch Account"   
-}
-
-DELETE
-/services/apexrest/Account/0015j00000CwQ4eAAF
-
-Raw Response
-HTTP/1.1 200 OK
-*/

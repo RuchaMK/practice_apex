@@ -1,4 +1,4 @@
-/*Prevent Duplicates on Contact based on Phone number and LastName*/
+/*Prevent Duplicates on Contact based on Phone number and Email*/
 //==================v2====================
 trigger TriggerScenario_18 on Contact (before insert,before update) {
     //fields to check

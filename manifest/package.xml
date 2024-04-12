@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-     <types>
+	<!--<types>
         <members>Contact.Primary_Contact__c</members>
         <name>CustomField</name>
      </types>
-      <!-- <types>
+       <types>
             <members>AccountBatch</members>
             <members>AccountBatchTest</members>
             <members>AccountCallout</members>
@@ -30,7 +30,115 @@
             <members>ContactListDatabase</members>
             <members>ContactListDml</members>
             <members>ContactSearch</members>
+			<members>AccWrapper</members>
+			<members>AccountManagement</members>
+			<members>AnimalLocator</members>
+			<members>AnimalLocatorMock</members>
+			<members>AnimalLocatorTest</members>
+			<members>AnimalsCallouts</members>
+			<members>AnimalsCalloutsTest</members>
+			<members>AnimalsHttpCalloutMock</members>
+			<members>AsyncCalculatorServices</members>
+			<members>AsyncParkService</members>
+			<members>AwesomeCalculator</members>
+			<members>AwesomeCalculatorTest</members>
+			<members>CalculatorCalloutMock</members>
+			<members>ChangePasswordController</members>
+			<members>ChangePasswordControllerTest</members>
+			<members>ForgotPasswordController</members>
+			<members>ForgotPasswordControllerTest</members>
+			<members>MyProfilePageController</members>
+			<members>MyProfilePageControllerTest</members>
+			<members>ParkLocator</members>
+			<members>ParkLocatorTest</members>
+			<members>ParkService</members>
+			<members>ParkServiceMock</members>
+			<members>PhoneValidation</members>
+			<members>SiteLoginController</members>
+			<members>SiteLoginControllerTest</members>
+			<members>SiteRegisterController</members>
+			<members>SiteRegisterControllerTest</members>
+			<members>calculatorServices</members>
+			<members>trlhdtips__tt_UtilController</members>
+			<members>trlhdtips__tt_UtilControllerTest</members>
+			<members>validateAccoutPhoneNumber</members>
+			<members>validatePhoneNumbers</members>
+			<members>verifyAccountPhoneNumber_Test</members>
+			<members>verifyAccountPhoneNumber_Test1</members>
+			<members>verifyMockCallout</members>
+			<members>viewExtImage</members>
         <name>ApexClass</name>
-       </types>-->
-    <version>57.0</version>
+    </types>
+	<types>
+		<members>TriggerScenario_11</members>
+		<members>TriggerScenario_13</members>
+		<members>TriggerScenario_14</members>
+		<members>TriggerScenario_17</members>
+		<members>TriggerScenario_24</members>
+		<members>Trigger_12</members>
+		<name>ApexTrigger</name>
+	</types>
+	<types>
+		<members>ApexDevNet</members>
+		<members>animals_http</members>
+		<members>animals_soap</members>
+		<members>theCatApi</members>
+		<members>veriPhone</members>
+		<members>verifyNum</members>
+		<name>RemoteSiteSetting</name>
+	</types>
+	<types>
+	  <members>AccountManager</members>
+	  <members>AccountManagerTest</members>
+	  <members>CaseManager</members>
+	  <members>CaseManagerTest</members>
+        <name>ApexClass</name>
+    </types
+
+	<types>
+		<members>AccountManager</members>
+		<members>AccountManagerTest</members>
+		<members>CaseManager</members>
+		<members>CaseManagerTest</members>
+		<members>AccountCalloutAPI</members>
+		<name>ApexClass</name>
+	</types>
+
+	<types>
+		<members>Account.Total_Contacts__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>Salesforce_Org</members>
+		<name>NamedCredential</name>
+	</types>
+	<types>
+		<members>Salesforce_Org</members>
+		<name>AuthProvider</name>
+	</types>
+	-->
+	
+	<types>
+		<members>AccountResourceAPI</members>
+		<name>ApexClass</name>
+	</types>
+	<types>
+		<members>Login_From_Salesforce</members>
+		<name>ConnectedApp</name>
+	</types>
+	<types>
+	<members>Login_From_Salesforce</members>
+	    <name>ApexClass</name>
+    </types>
+
+    <version>58.0</version>
 </Package>
+
+
+
+
+
+
+
+
+	

@@ -9,7 +9,7 @@ Salesforce Practice Questions
 1.	__AccountBatch, AccountBatchTest__
 2.	__AccountDML__
 3.	__AccountHandler__
-4.	__AccountManager__
+4.	__AccountManager_Basic__
 5.	__AccountProcessor, AccountProcessorTest__
 6.	__AddPrimaryContact, AddPrimaryContactTest__
 7.	__ApexData__

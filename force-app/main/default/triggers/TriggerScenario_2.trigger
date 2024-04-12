@@ -1,6 +1,5 @@
 // Whenever phone is modified on account object then update contact record with phone field
 trigger TriggerScenario_2 on Account (after update){
-    	if(true) return;
         List<Contact> conList = new List<Contact>();
         Map<Id,Account> updatedAccMap = new Map<Id,Account>();
    

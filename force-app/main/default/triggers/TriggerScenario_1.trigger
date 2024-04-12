@@ -1,28 +1,49 @@
 //Count number of contacts on Account using trigger 
 /*TriggerScenario_1 Roll Up Summary - Count number of contacts on Account using trigger .*/
-trigger TriggerScenario_15 on Contact (before insert, before update, after delete, after undelete) {
-    Set<Id> accId = new Set<Id>();
-
-    if(!Trigger.new.isEmpty()){
-        for(Contact con : Trigger.new){
-            accId.(con.AccountId);
+trigger TriggerScenario_1 on Contact (after insert, after update, after delete, after undelete) {
+	Set<Id> accSet = new Set<Id>();
+    List<Account> toUpdateAccount = new List<Account>();
+    //insert
+    if(Trigger.isInsert || Trigger.isUndelete){
+        for(Contact con : Trigger.New){
+            if(con.AccountId != null){
+                accSet.add(con.AccountId);
+            }
         }
     }
-    if(!Trigger.old.isEmpty()){
+    //update
+      if(Trigger.isUpdate){
+        for(Contact con : Trigger.New){
+            if(con.AccountId != Trigger.oldMap.get(con.Id).AccountId){
+                accSet.add(con.AccountId);
+                accSet.add(Trigger.oldMap.get(con.Id).AccountId);
+            }
+        }
+    }
+    //delete
+      if(Trigger.isDelete){
         for(Contact con : Trigger.old){
-            accId.(con.AccountId);
+			  accSet.add(con.AccountId);
         }
     }
-    List<Account> accList = [Select Id, (Select Id from Contacts) from Account where Id in: accId];
-    List<Contact> toUpdateAcc = new List<Contact>();
-    if(!accList.isEmpty()){
-        for(Account acc: accList){
-            acc.Count__c = acc.Contacts.size();
-            toUpdateAcc.add(acc);
-        }
+    
+    if(!accSet.isEmpty()){
+        //Select AccountId accId, COUNT() from Contact group by AccountId --gives all
+        for(AggregateResult agr : [Select AccountId accId, COUNT(Id) contactSize from Contact 
+                                   where AccountId in : accSet GROUP BY AccountId]){
+            Account acc = new Account();
+            acc.Id = (Id)agr.get('accId');
+            acc.Total_Contacts__c = (Integer)agr.get('contactSize');
+            toUpdateAccount.add(acc);
+        } 
     }
-    if(!toUpdateAcc.isEmpty()){
-        update toUpdateAcc;
+    
+    if(!toUpdateAccount.isEmpty()){
+        try{
+            update toUpdateAccount;
+        }catch(Exception ex){
+            system.debug('Exception: '+ex.getMessage());
+        }        
     }
 }
 /*==========================v1====================================

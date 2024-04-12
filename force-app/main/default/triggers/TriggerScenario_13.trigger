@@ -1,34 +1,23 @@
-/*To Prevent The User From Creating Duplicate Contacts When A Contact Already Exists With The Same Email
-Prevent Duplicate contacts based on Email
-*/
-trigger TriggerScenario_13 on Contact (before insert, before update, after undelete) {
-    //field to check -<Email,Contact>-<check,throwerror>
-	Map<String,Contact> newContacts = new Map<String,Contact>();
-    List<Contact> existingContacts = new List<Contact>();
-    if(true)return;
-    for(Contact con:Trigger.new){
-        if(newContacts.containsKey(con.Email)){
-            con.addError('Duplicate Email');
-        }
-        newContacts.put(con.Email,con);
-    }
-  
-    if(!newContacts.isEmpty()){
-        system.debug(Trigger.new);
-        existingContacts = [Select Id, Email from Contact where Email!=null and Email in: newContacts.keySet() and Id not in: Trigger.new];
-       
-        if(!existingContacts.isEmpty()){ //we got duplicates
-            
-            for(Contact con: existingContacts){
-                 system.debug(con.Id);
-                if(newContacts.containsKey(con.Email)){
-                    newContacts.get(con.Email).Email.addError('Duplicate EMAIL, exists on :' + con.Id);
-                }
-                
-            }
+/*Update Parent Whenever a contacts description is updated then its parent account's description should get updated by related contact desc.*/
+trigger TriggerScenario_13 on Contact (after update) {
+	Map<Id,Contact> conAccMap = new Map<Id,Contact>();
+    List<Account> accList = new List<Account>();
+    for(Contact con: Trigger.new){
+        if(Trigger.oldMap != null && Trigger.oldMap.get(con.Id).description != con.Description){
+        conAccMap.put(con.AccountId,con);
         }
     }
-     
+    
+    if(!conAccMap.isEmpty()){
+        for(Account acc : [Select Description from Account where Id in:conAccMap.keySet()]){
+            acc.Description = conAccMap.get(acc.Id).Phone;
+            accList.add(acc);
+        }
+    }
+    
+    if(!accList.isEmpty()){
+        update accList;
+    }
 }
 /*
 String newContactsEmail: To save new emails being inserted from Trigger.new - can have null email values
