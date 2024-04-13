@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Stage__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub Stage</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>To Be Assigned</fullName>
+                <default>false</default>
+                <label>To Be Assigned</label>
+            </value>
+            <value>
+                <fullName>SBD Ops Maker Pending</fullName>
+                <default>false</default>
+                <label>SBD Ops Maker Pending</label>
+            </value>
+            <value>
+                <fullName>SBD Ops Checker Pending</fullName>
+                <default>false</default>
+                <label>SBD Ops Checker Pending</label>
+            </value>
+            <value>
+                <fullName>SBD Ops Verifier Pending</fullName>
+                <default>false</default>
+                <label>SBD Ops Verifier Pending</label>
+            </value>
+            <value>
+                <fullName>FTS Pending</fullName>
+                <default>false</default>
+                <label>FTS Pending</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

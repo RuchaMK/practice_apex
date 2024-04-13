@@ -116,23 +116,96 @@
 		<members>Salesforce_Org</members>
 		<name>AuthProvider</name>
 	</types>
-	-->
-	
-	<types>
-		<members>AccountResourceAPI</members>
-		<name>ApexClass</name>
-	</types>
 	<types>
 		<members>Login_From_Salesforce</members>
 		<name>ConnectedApp</name>
 	</types>
+	
 	<types>
-	<members>Login_From_Salesforce</members>
-	    <name>ApexClass</name>
+		<members>CommunitiesLandingController</members>
+		<members>CommunitiesLandingControllerTest</members>
+		<members>CommunitiesLoginController</members>
+		<members>CommunitiesLoginControllerTest</members>
+		<members>CommunitiesSelfRegConfirmController	</members>
+		<members>CommunitiesSelfRegConfirmControllerTest</members>
+		<members>CommunitiesSelfRegController</members>
+		<members>CommunitiesSelfRegControllerTest</members>
+		<members>DataProvider</members>
+		<members>ForgotPasswordController</members>
+		<members>ForgotPasswordControllerTest</members>
+		<members>LightningForgotPasswordController</members>
+		<members>LightningForgotPasswordControllerTest	 </members>
+		<members>LightningLoginFormController</members>
+		<members>LightningLoginFormControllerTest</members>
+		<members>LightningSelfRegisterController</members>
+		<members>LightningSelfRegisterControllerTest</members>
+		<members>MicrobatchSelfRegController</members>
+		<members>MicrobatchSelfRegControllerTest</members>
+		<members>MyProfilePageController</members>
+		<members>MyProfilePageControllerTest</members>
+		<members>SiteLoginController</members>
+		<members>SiteLoginControllerTest</members>
+		<members>SiteRegisterController</members>
+		<members>SiteRegisterControllerTest</members>
+	<name>ApexClass</name>
     </types>
-
+	<types>
+		<members>*</members>
+	<name>LightningComponentBundle</name>
+    </types>
+	<types>
+		<members>*</members>
+	<name>AuraDefinitionBundle</name>
+    </types>
+	<types>
+		<members>SBD</members>
+		<name>CustomApplication</name>
+	</types>
+	<types>
+		<members>SBD_UtilityBar</members>
+		<members>lwcSBD</members>
+		<name>FlexiPage</name>
+	</types>
+	<types>
+		<members>Applicant__c</members>
+		<members>Bank_Detail__c</members>
+		<members>Bank__c</members>
+		<members>Loan_Application__c</members>
+		<members>Loan_Asset__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>*</members>
+		<name>ExperienceBundle</name>
+	</types>-->
+	<types>
+		<members>*</members>
+		<name>CustomSite</name>
+	</types>
+	<types>
+		<members>Bank_Detail__c</members>
+		<members>Bank__c</members>
+		<members>Loan_Application__c</members>
+		<members>Loan_Asset__c</members>
+		<members>lwcSBD</members>
+		<name>CustomTab</name>
+	</types>
+	<types>
+		<members>Bank_Detail__c.All</members>
+		<members>Bank__c.All</members>
+		<members>Loan_Application__c.All</members>
+		<members>Loan_Application__c.Loan_List_View</members>
+		<members>Loan_Asset__c.All</members>
+		<name>ListView</name>
+	</types>
     <version>58.0</version>
 </Package>
+
+
 
 
 
