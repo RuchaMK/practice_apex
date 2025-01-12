@@ -2,7 +2,7 @@
 private class AnimalsCalloutsTest {
     @isTest static void testGetCallout(){
         StaticResourceCalloutMock mock = new StaticResourceCalloutMock();
-        //this mock retrives data from a static resource in salesforce
+        //this mock retrieves data from a static resource in salesforce
         mock.setStaticResource('GetAnimalResource');
         mock.setStatusCode(200);
         mock.setHeader('Content-Type','application/json;charset=UTF=8');
